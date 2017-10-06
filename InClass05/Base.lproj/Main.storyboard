@@ -18,46 +18,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fDI-hf-2Ls">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fDI-hf-2Ls">
                                 <rect key="frame" x="7" y="72" width="361" height="192"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fDI-hf-2Ls" secondAttribute="height" multiplier="361:192" id="5eb-O5-Uuk"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="giY-yr-HPK">
-                                <rect key="frame" x="30" y="578" width="315" height="73"/>
-                                <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmP-yY-e9S">
-                                        <rect key="frame" x="0.0" y="0.0" width="157.5" height="73"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
-                                        <state key="normal" title="&lt;"/>
-                                        <connections>
-                                            <action selector="nextPhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bv9-Kh-BaZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-KD-cWV">
-                                        <rect key="frame" x="157.5" y="0.0" width="157.5" height="73"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="51"/>
-                                        <state key="normal" title="&gt;"/>
-                                        <connections>
-                                            <action selector="nextPhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LcU-ne-CXq"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4lU-lz-Tzr">
+                                <rect key="frame" x="177" y="355.5" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-KD-cWV">
+                                <rect key="frame" x="263" y="592" width="62" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Phj-ce-Led"/>
+                                    <constraint firstAttribute="width" constant="62" id="phb-cT-o27"/>
+                                </constraints>
+                                <state key="normal" title="&gt;" image="ic_action_next_item"/>
+                                <connections>
+                                    <action selector="nextPhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LcU-ne-CXq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmP-yY-e9S">
+                                <rect key="frame" x="50" y="592" width="62" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="BVc-0W-R9I"/>
+                                    <constraint firstAttribute="height" constant="55" id="as2-AZ-QcB"/>
+                                </constraints>
+                                <state key="normal" title="&lt;" image="ic_action_previous_item"/>
+                                <connections>
+                                    <action selector="nextPhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bv9-Kh-BaZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="4lU-lz-Tzr" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="0Ag-L5-QoZ"/>
                             <constraint firstItem="fDI-hf-2Ls" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="7" id="0eL-Le-Hjt"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="giY-yr-HPK" secondAttribute="bottom" constant="16" id="LQ1-Sr-RCB"/>
-                            <constraint firstItem="giY-yr-HPK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="OK4-7K-gvj"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="giY-yr-HPK" secondAttribute="trailing" constant="30" id="Xcr-Hs-5M1"/>
+                            <constraint firstItem="RmP-yY-e9S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="1za-OL-Efn"/>
+                            <constraint firstItem="4lU-lz-Tzr" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5yd-Gx-Llh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QFb-KD-cWV" secondAttribute="bottom" constant="20" id="KUs-9C-xtr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RmP-yY-e9S" secondAttribute="bottom" constant="20" id="Was-6K-csM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QFb-KD-cWV" secondAttribute="trailing" constant="50" id="d6C-EB-3qr"/>
                             <constraint firstItem="fDI-hf-2Ls" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="pCp-hx-ejl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fDI-hf-2Ls" secondAttribute="trailing" constant="7" id="vcD-vl-9LH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="4lU-lz-Tzr" id="efW-I8-cwP"/>
                         <outlet property="nextButton" destination="QFb-KD-cWV" id="g84-eY-rtK"/>
                         <outlet property="photoImageView" destination="fDI-hf-2Ls" id="p5b-fX-aNt"/>
                         <outlet property="previousButton" destination="RmP-yY-e9S" id="eTe-Vc-VZs"/>
@@ -118,4 +126,8 @@
             <point key="canvasLocation" x="-417" y="140"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_action_next_item" width="96" height="96"/>
+        <image name="ic_action_previous_item" width="96" height="96"/>
+    </resources>
 </document>

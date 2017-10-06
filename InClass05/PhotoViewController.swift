@@ -15,6 +15,7 @@ class PhotoViewController: UIViewController {
     public var parameterDictionary:[String:String]?
     var pid = 0;
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var photoImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,12 +69,19 @@ class PhotoViewController: UIViewController {
         request.allHTTPHeaderFields = headers
         
         let session = URLSession.shared
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+           
             if (error != nil) {
                 print(error!)
             } else {
                 //calling main thread
                 DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.view.isUserInteractionEnabled = true
                     let image = UIImage(data: data!)
                     self.photoImageView.image = image
                 }
