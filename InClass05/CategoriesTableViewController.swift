@@ -83,13 +83,12 @@ class CategoriesTableViewController: UITableViewController {
             if (error != nil) {
                 print(error!)
             } else {
-                let httpResponse = response as? HTTPURLResponse
                 let datastring = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!
                 print(datastring)
                 
                 //calling main thread
                 DispatchQueue.main.async {
-                    self.loadPhotoView(with: Int(datastring.intValue))
+                    self.loadPhotoView(withCategory: category, andCount:Int(datastring.intValue))
                 }
                 
             }
@@ -101,14 +100,34 @@ class CategoriesTableViewController: UITableViewController {
         return count
     }
     
-    func loadPhotoView(with count:Int){
-        performSegue(withIdentifier: "photoView", sender: nil)
+    func loadPhotoView(withCategory category:String, andCount:Int){
+        var titleNextPage = findKeyForValue(value: category, dictionary: categories)
+        
+        var catergoryDict = ["category":titleNextPage,
+                             "count":andCount] as [String : Any]
+        performSegue(withIdentifier: "photoView", sender: catergoryDict)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("Prepare for segue called")
+        var catergoryDict = sender as! [String : Any]
+        let photoVieController = segue.destination as! PhotoViewController
+        photoVieController.category = catergoryDict["category"] as? String
+        photoVieController.photoCount = catergoryDict["count"] as? Int
     }
     
+    func findKeyForValue(value: String, dictionary: [String: String]) ->String?
+    {
+        for (key, array) in dictionary
+        {
+            if (array.contains(value))
+            {
+                return key
+            }
+        }
+        
+        return nil
+    }
 }
 
 

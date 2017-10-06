@@ -14,7 +14,8 @@ class PhotoViewController: UIViewController {
     public var category:String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Photo view view did called")
+        print("Photo view view did called with category \(category!) and its count as \(photoCount!)")
+        self.title = category
         // Do any additional setup after loading the view.
     }
 
