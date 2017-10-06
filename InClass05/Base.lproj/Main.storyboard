@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fDI-hf-2Ls">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fDI-hf-2Ls">
                                 <rect key="frame" x="7" y="72" width="361" height="192"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fDI-hf-2Ls" secondAttribute="height" multiplier="361:192" id="5eb-O5-Uuk"/>
