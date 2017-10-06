@@ -13,6 +13,7 @@
 		CE67C4931F86F447006737BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE67C4921F86F447006737BB /* Assets.xcassets */; };
 		CE67C4961F86F447006737BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE67C4941F86F447006737BB /* LaunchScreen.storyboard */; };
 		CE67C49E1F86F4A1006737BB /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67C49D1F86F4A1006737BB /* CategoriesTableViewController.swift */; };
+		CE67C4A01F86FB19006737BB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67C49F1F86FB19006737BB /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CE67C4951F86F447006737BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE67C4971F86F447006737BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE67C49D1F86F4A1006737BB /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
+		CE67C49F1F86FB19006737BB /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				CE67C4941F86F447006737BB /* LaunchScreen.storyboard */,
 				CE67C4971F86F447006737BB /* Info.plist */,
 				CE67C49D1F86F4A1006737BB /* CategoriesTableViewController.swift */,
+				CE67C49F1F86FB19006737BB /* PhotoViewController.swift */,
 			);
 			path = InClass05;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE67C49E1F86F4A1006737BB /* CategoriesTableViewController.swift in Sources */,
+				CE67C4A01F86FB19006737BB /* PhotoViewController.swift in Sources */,
 				CE67C48E1F86F447006737BB /* ViewController.swift in Sources */,
 				CE67C48C1F86F447006737BB /* AppDelegate.swift in Sources */,
 			);

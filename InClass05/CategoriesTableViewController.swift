@@ -9,7 +9,14 @@
 import UIKit
 
 class CategoriesTableViewController: UITableViewController {
-    var categories = ["Animals","News","Entertainment","Food and Drink","Cars"]
+
+    var categories:[String:String] = ["Animals":"animals",
+    "News":"news",
+    "Entertainment":"entertainment",
+    "Food and Drink":"food",
+    "Cars":"car"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,55 +47,68 @@ class CategoriesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        cell.textLabel?.text = categories[indexPath.row]
+        var keyValues = [String](categories.keys)
+        cell.textLabel?.text = keyValues[indexPath.row]
 
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath),
+            let categoryKey = cell.textLabel?.text{
+            let category = categories[categoryKey]
+            getImageCountFor(category: category!)
+        }
 
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    //network call method
+    func getImageCountFor(category:String) -> Int {
+        var count = 0
+        //Implementing URLSession
+       
+        let headers = [
+            "cache-control": "no-cache",
+            "postman-token": "5a1fb91b-9f81-6513-c96c-600945c11525"
+        ]
+        
+        var request = NSMutableURLRequest(url: NSURL(string: "http://dev.theappsdr.com/lectures/inclass_http/photos.php?count=get&category=\(category)")! as URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                print(error!)
+            } else {
+                let httpResponse = response as? HTTPURLResponse
+                let datastring = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!
+                print(datastring)
+                
+                //calling main thread
+                DispatchQueue.main.async {
+                    self.loadPhotoView(with: Int(datastring.intValue))
+                }
+                
+            }
+        })
+        
+        dataTask.resume()
+        
+        //End implementing URLSession
+        return count
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    func loadPhotoView(with count:Int){
+        performSegue(withIdentifier: "photoView", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        print("Prepare for segue called")
     }
-    */
-
+    
 }
+
+
