@@ -12,27 +12,75 @@ class PhotoViewController: UIViewController {
 
     public var photoCount:Int?
     public var category:String?
+    public var parameterDictionary:[String:String]?
+    var pid = 0;
+    
+    @IBOutlet weak var photoImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Photo view view did called with category \(category!) and its count as \(photoCount!)")
         self.title = category
+        category = parameterDictionary?[category!]
+        fetchPhoto(category: category!, pid: pid)
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBOutlet weak var nextButton: UIButton!
+    
+    @IBOutlet weak var previousButton: UIButton!
+    
+    @IBAction func nextPhotoPressed(_ sender: UIButton) {
+       //previous
+        if sender.tag == 1 {
+            pid -= 1;
+            changeButtonStatus()
+        }
+            
+        //next
+        else if sender.tag == 2{
+            pid += 1
+            changeButtonStatus()
+        }
+        
+        fetchPhoto(category: category!, pid: pid)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func changeButtonStatus() {
+        nextButton.isEnabled = true
+        previousButton.isEnabled = true
+        if pid>=photoCount!-1 {
+            nextButton.isEnabled = false
+        }
+        if pid<=0{
+            previousButton.isEnabled = false
+        }
     }
-    */
+    
+    func fetchPhoto(category:String, pid:Int) -> Void {
+        let headers = [
+            "cache-control": "no-cache",
+            "postman-token": "19fa90a2-3bdc-3ca6-7f94-9849a9361462"
+        ]
+        
+        let request = NSMutableURLRequest(url: NSURL(string: "http://dev.theappsdr.com/lectures/inclass_http/photos.php?category=\(category)&pid=\(pid)")! as URL,
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                print(error!)
+            } else {
+                //calling main thread
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data!)
+                    self.photoImageView.image = image
+                }
+            }
+        })
+        
+        dataTask.resume()
+    }
 
 }

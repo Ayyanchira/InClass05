@@ -20,6 +20,7 @@ class CategoriesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -63,16 +64,13 @@ class CategoriesTableViewController: UITableViewController {
     }
     
     //network call method
-    func getImageCountFor(category:String) -> Int {
-        var count = 0
-        //Implementing URLSession
-       
+    func getImageCountFor(category:String){
         let headers = [
             "cache-control": "no-cache",
             "postman-token": "5a1fb91b-9f81-6513-c96c-600945c11525"
         ]
         
-        var request = NSMutableURLRequest(url: NSURL(string: "http://dev.theappsdr.com/lectures/inclass_http/photos.php?count=get&category=\(category)")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "http://dev.theappsdr.com/lectures/inclass_http/photos.php?count=get&category=\(category)")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -95,16 +93,13 @@ class CategoriesTableViewController: UITableViewController {
         })
         
         dataTask.resume()
-        
-        //End implementing URLSession
-        return count
     }
     
     func loadPhotoView(withCategory category:String, andCount:Int){
-        var titleNextPage = findKeyForValue(value: category, dictionary: categories)
-        
-        var catergoryDict = ["category":titleNextPage,
-                             "count":andCount] as [String : Any]
+        let titleNextPage = findKeyForValue(value: category, dictionary: categories)
+        let catergoryDict = ["category":titleNextPage,
+                             "count":andCount,
+                             "parameterDict":categories] as [String : Any]
         performSegue(withIdentifier: "photoView", sender: catergoryDict)
     }
     
@@ -114,8 +109,10 @@ class CategoriesTableViewController: UITableViewController {
         let photoVieController = segue.destination as! PhotoViewController
         photoVieController.category = catergoryDict["category"] as? String
         photoVieController.photoCount = catergoryDict["count"] as? Int
+        photoVieController.parameterDictionary = catergoryDict["parameterDict"] as? [String : String]
     }
     
+    //from internet
     func findKeyForValue(value: String, dictionary: [String: String]) ->String?
     {
         for (key, array) in dictionary

@@ -27,15 +27,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="giY-yr-HPK">
                                 <rect key="frame" x="30" y="578" width="315" height="73"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmP-yY-e9S">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmP-yY-e9S">
                                         <rect key="frame" x="0.0" y="0.0" width="157.5" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                         <state key="normal" title="&lt;"/>
+                                        <connections>
+                                            <action selector="nextPhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bv9-Kh-BaZ"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-KD-cWV">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-KD-cWV">
                                         <rect key="frame" x="157.5" y="0.0" width="157.5" height="73"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                         <state key="normal" title="&gt;"/>
+                                        <connections>
+                                            <action selector="nextPhotoPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LcU-ne-CXq"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -51,6 +57,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="QFb-KD-cWV" id="g84-eY-rtK"/>
+                        <outlet property="photoImageView" destination="fDI-hf-2Ls" id="p5b-fX-aNt"/>
+                        <outlet property="previousButton" destination="RmP-yY-e9S" id="eTe-Vc-VZs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
